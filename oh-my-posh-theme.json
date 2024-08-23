@@ -9,7 +9,7 @@
         {
           "type": "os",
           "style": "plain",
-          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} <#fff>\uf120</> "
+          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} "
         },
         {
           "foreground": "#BBC4B9",
@@ -17,7 +17,6 @@
             "display_host": true
           },
           "style": "diamond",
-          "template": "{{ .UserName }} ",
           "type": "session"
         },
         {
