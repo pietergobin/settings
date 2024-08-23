@@ -88,7 +88,7 @@
         {
           "foreground": "#BBC4B9",
           "style": "diamond",
-          "template": "\uf308 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
+          "template": "\uf10fe {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
           "type": "kubectl"
         }
       ],
@@ -101,7 +101,7 @@
         {
           "foreground": "#BFA8BF",
           "style": "diamond",
-          "template": "\ue73c {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
+          "template": "\ue73c {{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
           "type": "python"
         }
       ]
