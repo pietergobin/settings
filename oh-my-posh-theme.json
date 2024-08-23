@@ -105,7 +105,7 @@
         {
           "foreground": "#BBC4B9",
           "style": "diamond",
-          "template": "<#00aeff>\udb84\udcfe</> {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
+          "template": "<#00aeff>\udb84\udcfe</> {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}} ",
           "type": "kubectl"
         }
       ]
