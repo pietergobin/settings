@@ -102,7 +102,7 @@
         {
           "foreground": "#BBC4B9",
           "style": "diamond",
-          "template": "\uf10fe {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
+          "template": "\uf308 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
           "type": "kubectl"
         }
       ]
