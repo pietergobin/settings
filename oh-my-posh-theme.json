@@ -86,10 +86,10 @@
       "newline": true,
       "segments": [
         {
-          "foreground": "#BBC4B9",
+          "foreground": "#BFA8BF",
           "style": "diamond",
-          "template": "\u2388 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
-          "type": "kubectl"
+          "template": "\ue73c {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} {{ end }}",
+          "type": "python"
         }
       ],
       "type": "prompt"
@@ -98,11 +98,12 @@
       "alignment": "right",
       "type": "prompt",
       "segments": [
+        
         {
-          "foreground": "#BFA8BF",
+          "foreground": "#BBC4B9",
           "style": "diamond",
-          "template": "\ue73c {{ if .Venv }}{{ .Venv }} {{ end }}",
-          "type": "python"
+          "template": "\udb84\udcfe {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
+          "type": "kubectl"
         }
       ]
     },
