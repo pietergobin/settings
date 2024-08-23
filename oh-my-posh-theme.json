@@ -7,8 +7,12 @@
       "newline": true,
       "segments": [
         {
+          "type": "os",
+          "style": "plain",
+          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} <#fff>\uf120</> "
+        },
+        {
           "foreground": "#BBC4B9",
-          "leading_diamond": "<#BFA8BF>~</> ",
           "properties": {
             "display_host": true
           },
@@ -86,16 +90,7 @@
       "alignment": "left",
       "newline": true,
       "segments": [
-        {
-          "type": "os",
-          "style": "plain",
-          "foreground": "#26C6DA",
-          "background": "#546E7A",
-          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} <#fff>\uf120</> ",
-          "properties": {
-            "macos": "mac"
-          }
-        },
+
         {
           "foreground": "#BFA8BF",
           "style": "diamond",
