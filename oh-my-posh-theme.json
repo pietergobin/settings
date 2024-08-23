@@ -1,5 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+
   "blocks": [
     {
       "alignment": "left",
@@ -88,7 +89,7 @@
         {
           "foreground": "#BFA8BF",
           "style": "diamond",
-          "template": "\ue73c {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} {{ end }}",
+          "template": "<#ffde57>\ued1b</> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
           "type": "python"
         }
       ],
@@ -98,11 +99,10 @@
       "alignment": "right",
       "type": "prompt",
       "segments": [
-        
         {
           "foreground": "#BBC4B9",
           "style": "diamond",
-          "template": "\uf308 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
+          "template": "<#00aeff>\udb84\udcfe</> {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
           "type": "kubectl"
         }
       ]
