@@ -33,12 +33,6 @@
           "style": "powerline",
           "template": " <#fff>\uf120</> {{ .Name }} ",
           "type": "shell"
-        },
-        {
-          "foreground": "#BFA8BF",
-          "style": "diamond",
-          "template": "\ue73c {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
-          "type": "python"
         }
       ],
       "type": "prompt"
@@ -99,6 +93,18 @@
         }
       ],
       "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "type": "prompt",
+      "segments": [
+        {
+          "foreground": "#BFA8BF",
+          "style": "diamond",
+          "template": "\ue73c {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
+          "type": "python"
+        }
+      ]
     },
     {
       "alignment": "left",
