@@ -101,7 +101,7 @@
         {
           "foreground": "#BFA8BF",
           "style": "diamond",
-          "template": "\ue73c {{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
+          "template": "\ue73c {{ if .Venv }}{{ .Venv }} {{ end }}",
           "type": "python"
         }
       ]
