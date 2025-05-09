@@ -2,7 +2,7 @@
 $env:PYTHONIOENCODING="utf-8"
 
 
-$env:POSH_THEME = "https://raw.githubusercontent.com/pietergobin/settings/main/oh-my-posh-theme.json"
+$env:POSH_THEME = "https://raw.githubusercontent.com/pietergobin/settings/main/windows/oh-my-posh-theme.json"
 
 
 function Get-KubectlPods {

@@ -112,3 +112,4 @@ alias kc="kubectl"
 alias kctx='kubectx'
 alias kns='kubens'
 
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
