@@ -90,15 +90,11 @@ else
     return
 fi
 
-if user_can_sudo; then
-    $Sudo -k apt-get update
-    pkgs=(fzf zsh kubectx git tree unzip)
-    $Sudo -k apt-get -y --ignore-missing install "${pkgs[@]}" 
-else
-    apt-get update
-    pkgs=(fzf zsh kubectx git tree unzip)
-    apt-get -y --ignore-missing install "${pkgs[@]}" 
-fi
+
+$Sudo apt-get update
+pkgs=(fzf zsh kubectx git tree unzip)
+$Sudo apt-get -y --ignore-missing install "${pkgs[@]}" 
+
 
 
 
@@ -108,13 +104,13 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 
 OK="$(cat kubectl.sha256)  kubectl" | sha256sum --check
 
-install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+$Sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 rm -rf kubectl
 rm kubectl.sha256
 
 curl -LO "https://github.com/asdf-vm/asdf/releases/download/v0.16.7/asdf-v0.16.7-linux-amd64.tar.gz"
-tar -xvzf asdf-v0.16.7-linux-amd64.tar.gz -C /usr/local/bin
+$Sudo tar -xvzf asdf-v0.16.7-linux-amd64.tar.gz -C /usr/local/bin
 rm asdf-v0.16.7-linux-amd64.tar.gz
 
 asdf plugin add kubelogin
