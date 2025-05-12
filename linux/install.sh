@@ -115,7 +115,7 @@ rm asdf-v0.16.7-linux-amd64.tar.gz
 
 asdf plugin add kubelogin
 asdf install kubelogin latest
-asdf set kubelogin latest
+asdf set -u kubelogin latest
 
 
 if [ ! -d "$HOME"/.oh-my-zsh ]; then
