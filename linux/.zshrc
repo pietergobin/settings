@@ -115,7 +115,9 @@ alias kns='kubens'
 logs(){
     # dont enable if kubeoff is set allowing other functions to do other things in their context
     [[ "${KUBE_PS1_ENABLED}" == "off" ]] && return
-    kubectl logs $(kubectl get pods -o name | fzf)
+    local pod=$(kubectl get pods -o name | fzf)
+    print -s "kubectl logs $pod $*"
+    kubectl logs $pod $*
     
 }
 
@@ -128,9 +130,13 @@ describe(){
     else
         local rtype=$1
     fi
-    kubectl describe $(kubectl get $rtype -o name | fzf)
+    local r=$(kubectl get $rtype -o name | fzf)
+    print -s "kubectl describe $r"
+    kubectl describe 
 
 }
+
+
 
 help(){
     echo "
