@@ -73,6 +73,9 @@ plugins=(
     golang
     )
 
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
 source $ZSH/oh-my-zsh.sh
 PROMPT='$(kube_ps1)'$PROMPT;kubeoff
 
@@ -112,5 +115,3 @@ alias kns='kubens'
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
