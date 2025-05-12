@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -73,9 +76,6 @@ plugins=(
     golang
     )
 
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
 source $ZSH/oh-my-zsh.sh
 PROMPT='$(kube_ps1)'$PROMPT;kubeoff
 
@@ -108,10 +108,84 @@ PROMPT='$(kube_ps1)'$PROMPT;kubeoff
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias kc="kubectl"
+alias kc='kubectl'
 alias kctx='kubectx'
 alias kns='kubens'
 
+logs(){
+    # dont enable if kubeoff is set allowing other functions to do other things in their context
+    [[ "${KUBE_PS1_ENABLED}" == "off" ]] && return
+    kubectl logs $(kubectl get pods -o name | fzf)
+    
+}
+
+
+describe(){
+    # dont enable if kubeoff is set
+    [[ "${KUBE_PS1_ENABLED}" == "off" ]] && return
+    if [ -z "$1" ]; then
+        local rtype="$(kubectl api-resources -o name | fzf)"
+    else
+        local rtype=$1
+    fi
+    kubectl describe $(kubectl get $rtype -o name | fzf)
+
+}
+
+help(){
+    echo "
+=== Kubernetes Aliases and Functions ===
+Aliases:
+  kc    - Short for 'kubectl'
+  kctx  - Short for 'kubectx' (switch between Kubernetes contexts)
+  kns   - Short for 'kubens' (switch between Kubernetes namespaces)
+
+Functions:
+  logs [pod]
+    - Interactive pod log viewer
+    - Uses fzf to select a pod if none specified
+    - Disabled when KUBE_PS1 is off (kubeoff)
+
+  describe [resource-type]
+    - Interactive resource descriptor
+    - If resource-type is omitted, lets you select from available API resources
+    - Uses fzf for interactive selection
+    - Disabled when KUBE_PS1 is off (kubeoff)
+
+Kubernetes Context Management:
+  kubeoff  - Disable Kubernetes prompt integration
+  kubeon   - Enable Kubernetes prompt integration
+
+=== ZSH Tips and Tricks ===
+Navigation:
+  cd -     - Go to previous directory
+  ..       - Shorthand for 'cd ..'
+  ...      - Shorthand for 'cd ../..'
+
+History:
+  !!       - Run last command
+  !$       - Use last argument of previous command
+  ctrl-r   - Search command history (with fzf integration)
+
+Git (via oh-my-zsh git plugin):
+  ga       - git add
+  gc       - git commit
+  gco      - git checkout
+  gst      - git status
+  
+Oh-My-Zsh Theme:
+  Current theme: robbyrussell
+  Change theme by editing ZSH_THEME in .zshrc
+
+Active Plugins:
+  - git
+  - kube-ps1
+  - golang
+
+Package Management:
+  ASDF is configured for version management
+  Shims path is automatically added to PATH
+"
+}
+
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-
-
