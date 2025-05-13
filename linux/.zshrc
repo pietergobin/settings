@@ -74,6 +74,7 @@ plugins=(
     git 
     kube-ps1
     golang
+    kubectl
     )
 
 source $ZSH/oh-my-zsh.sh
@@ -132,6 +133,8 @@ fdescribe(){
     if [[ "$1" == "-h" || "$1" == "--help" ]]; then
       kubectl describe --help
       return
+    fi
+    
     if [ -z "$1" ]; then
         local rtype="$(kubectl api-resources -o name | fzf)"
     else
