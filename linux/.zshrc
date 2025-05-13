@@ -112,9 +112,13 @@ alias kc='kubectl'
 alias kctx='kubectx'
 alias kns='kubens'
 
-logs(){
+flogs(){
     # dont enable if kubeoff is set allowing other functions to do other things in their context
     [[ "${KUBE_PS1_ENABLED}" == "off" ]] && return
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+      kubectl logs --help
+      return
+    fi 
     local pod=$(kubectl get pods -o name | fzf)
     print -s "kubectl logs $pod $*"
     kubectl logs $pod $*
@@ -122,9 +126,12 @@ logs(){
 }
 
 
-describe(){
+fdescribe(){
     # dont enable if kubeoff is set
     [[ "${KUBE_PS1_ENABLED}" == "off" ]] && return
+    if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+      kubectl describe --help
+      return
     if [ -z "$1" ]; then
         local rtype="$(kubectl api-resources -o name | fzf)"
     else
@@ -132,7 +139,7 @@ describe(){
     fi
     local r=$(kubectl get $rtype -o name | fzf)
     print -s "kubectl describe $r"
-    kubectl describe 
+    kubectl describe $r
 
 }
 
@@ -147,15 +154,17 @@ Aliases:
   kns   - Short for 'kubens' (switch between Kubernetes namespaces)
 
 Functions:
-  logs [pod]
+  flogs
     - Interactive pod log viewer
-    - Uses fzf to select a pod if none specified
+    - Uses fzf to select a pod
+    - Pushes kubectl cmd into zsh history
     - Disabled when KUBE_PS1 is off (kubeoff)
 
-  describe [resource-type]
+  fdescribe [resource-type]
     - Interactive resource descriptor
     - If resource-type is omitted, lets you select from available API resources
-    - Uses fzf for interactive selection
+    - Uses fzf for interactive selection of resource
+    - Pushes kubectl command into zsh history
     - Disabled when KUBE_PS1 is off (kubeoff)
 
 Kubernetes Context Management:
