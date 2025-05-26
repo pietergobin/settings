@@ -92,7 +92,7 @@ fi
 
 
 $Sudo apt-get update
-pkgs=(fzf zsh kubectx git tree unzip locales locales-all)
+pkgs=(fzf zsh kubectx git tree unzip locales locales-all bat ripgrep)
 $Sudo apt-get -y --ignore-missing install "${pkgs[@]}" 
 
 
