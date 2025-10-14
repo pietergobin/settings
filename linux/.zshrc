@@ -146,6 +146,21 @@ fdescribe(){
 
 }
 
+pipelines(){
+  local gitname="$(git config --get remote.origin.url | rev | cut -d / -f1 | rev)"
+  echo "querying azure devops for repo $gitname"
+  local pipeline="$(az pipelines list --repository $gitname -o table | fzf --header-lines 2 --layout=reverse | awk '{print $1}')"
+  echo $pipeline
+  az pipelines runs list --branch $(git rev-parse --abbrev-ref HEAD) \
+    -o table \
+    --top 10 \
+    --pipeline-ids $pipeline | 
+    fzf --header-lines 2 \
+    --layout reverse \
+    --preview 'az pipelines runs show --id {1} -o yamlc' --preview-window down:10:nowrap
+
+}
+
 
 
 help(){
