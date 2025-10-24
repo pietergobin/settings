@@ -163,10 +163,8 @@ pipelines(){
 
 alias bathelp='bat --plain --language=help'
 help() {
-    "$@" --help 2>&1 | bathelp
-}
+  if ["$#" -eq 0 ]; then 
 
-help(){
     echo "
 === Kubernetes Aliases and Functions ===
 Aliases:
@@ -222,6 +220,10 @@ Package Management:
   ASDF is configured for version management
   Shims path is automatically added to PATH
 "
+  else 
+    "$@" --help 2>&1 | bathelp
+  fi 
+  
 }
 
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH:$HOME/.local/bin"
